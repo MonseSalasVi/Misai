@@ -75,12 +75,7 @@ const UpdateProduct = () => {
 	//DIA En que se creo y dia en que se edito
 	console.log(time);
 	return (
-		<div>
-			<Button className={classes.btnback} style={{ marginTop: "20px" }}>
-				{" "}
-				<ArrowBackIosIcon style={{ fontSize: 15 }} /> back{" "}
-			</Button>
-		<div>
+		
 			<form className={classes.root} noValidate>
 				<Typography className={classes.title} variant="h4" gutterBottom>
 					{" "}
@@ -128,8 +123,7 @@ const UpdateProduct = () => {
 					</Button>
 				</div>
 			</form>
-			</div>
-		</div>
+		
 	);
 };
 
