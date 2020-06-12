@@ -1,11 +1,14 @@
-import React from "react";
+
+import React, { useState } from 'react';
+import axios from 'axios';
+import useToken from '../../../controller/useToken'
+//material
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import Button from "@material-ui/core/Button";
 import CancelIcon from "@material-ui/icons/Cancel";
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 
 const useStyles = makeStyles((theme) => ({
@@ -50,14 +53,28 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
+
 const UpdateCategory = () => {
-	const classes = useStyles();
+    const classes = useStyles();
+	const { token } = useToken()
+	const [description, setDescription] = useState('')
+
+	const submitValue = () => {
+		axios.post('https://genericapiv1.azurewebsites.net/v1/shop/categories',
+	         {
+				description
+			 },
+			{
+				headers: { Authorization: `Bearer ${token}`}
+			})
+			.then(function (response) {
+				console.log(response);
+			})
+
+	}
 
 	return (
-		<div>
-			<Button className={classes.btnback} style={{ marginTop: "20px" }}>
-				<ArrowBackIosIcon style={{ fontSize: 30 }} /> back
-			</Button>
+        <div>
 
 			<form className={classes.root}>
 				<Typography className={classes.title} variant="h4" gutterBottom>
@@ -73,7 +90,7 @@ const UpdateCategory = () => {
 				<AddAPhotoIcon style={{ width: 100 }} />
 				<div className={classes.divbtn}>
 					<Button style={{ width: 10 }} className={classes.btn}>
-						<CheckCircleIcon style={{ fontSize: 30 }} />
+						<CheckCircleIcon style={{ fontSize: 30 }} onClick={submitValue} />
 					</Button>
 					<Button style={{ width: 10 }} className={classes.btn}>
 						<CancelIcon style={{ fontSize: 30 }} />
@@ -81,7 +98,6 @@ const UpdateCategory = () => {
 				</div>
 			</form>
 		</div>
-	);
-};
-
+	)
+}
 export default UpdateCategory;

@@ -8,7 +8,6 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
-import LabelIcon from '@material-ui/icons/Label';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -125,9 +124,6 @@ const HeaderCustomer = ({categoriesSection, handleShowProducts, handleLoginView}
 					</div>
 				</Toolbar>
 				<Toolbar className={classes.links}>
-					<Button className={classes.button2} >
-						<LabelIcon/> All discount
-					</Button>
                     <form>
 					{categoriesSection.map(category => (
 						<Button
